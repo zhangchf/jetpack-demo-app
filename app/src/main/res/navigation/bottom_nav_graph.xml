@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/bottomNav1Fragment">
+
+    <fragment
+        android:id="@+id/bottomNav1Fragment"
+        android:name="com.zcf.testapp.BottomNav1Fragment"
+        android:label="BottomNav1Fragment" >
+        <action
+            android:id="@+id/action_bottomNav1Fragment_to_bottomNav4Fragment"
+            app:destination="@id/bottomNav4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottomNav2Fragment"
+        android:name="com.zcf.testapp.BottomNav2Fragment"
+        android:label="BottomNav2Fragment" >
+        <action
+            android:id="@+id/action_bottomNav2Fragment_to_bottomNav4Fragment"
+            app:destination="@id/bottomNav4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottomNav3Fragment"
+        android:name="com.zcf.testapp.BottomNav3Fragment"
+        android:label="BottomNav3Fragment" />
+    <fragment
+        android:id="@+id/bottomNav4Fragment"
+        android:name="com.zcf.testapp.BottomNav4Fragment"
+        android:label="BottomNav4Fragment" >
+        <argument
+            android:name="content_id"
+            app:argType="integer" />
+    </fragment>
+</navigation>

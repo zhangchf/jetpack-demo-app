@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottomNav1Fragment"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="Page 1" />
+    <item
+        android:id="@+id/bottomNav2Fragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Page 2" />
+    <item
+        android:id="@+id/bottomNav3Fragment"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="Page 3" />
+    <item
+        android:id="@+id/bottomNav4Fragment"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="Page 4" />
+</menu>
