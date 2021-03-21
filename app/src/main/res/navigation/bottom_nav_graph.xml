@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/bottomNav3Fragment"
-        android:name="com.zcf.testapp.BottomNav3Fragment"
+        android:name="com.zcf.testapp.fragment3.BottomNav3Fragment"
         android:label="BottomNav3Fragment" />
     <fragment
         android:id="@+id/bottomNav4Fragment"
@@ -30,6 +30,7 @@
         android:label="BottomNav4Fragment" >
         <argument
             android:name="content_id"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

@@ -25,6 +25,6 @@ class BottomNav4Fragment: Fragment(R.layout.fragment_bottom_nav_4) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textContent.text = "Bottom 4 Content: ${args.contentId}"
+        binding.textContent.text = "Bottom 4 Content: ${args?.contentId ?: 0}"
     }
 }

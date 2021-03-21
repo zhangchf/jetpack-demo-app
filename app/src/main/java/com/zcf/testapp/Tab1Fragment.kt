@@ -27,12 +27,12 @@ class Tab1Fragment: Fragment() {
         binding.textContent.setOnClickListener {
             navigateToDetailScreen(0)
         }
-
-
     }
 
     private fun navigateToDetailScreen(contentId: Int) {
-        val direction = BottomNav1FragmentDirections.actionBottomNav1FragmentToBottomNav4Fragment(contentId)
+        val direction = BottomNav1FragmentDirections
+            .actionBottomNav1FragmentToBottomNav4Fragment()
+            .setContentId(contentId)
         findNavController().navigate(direction)
     }
 }

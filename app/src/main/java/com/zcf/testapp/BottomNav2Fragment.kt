@@ -30,7 +30,9 @@ class BottomNav2Fragment: Fragment() {
     }
 
     private fun navigateToDetailsScreen(contentId: Int) {
-        val direction = BottomNav2FragmentDirections.actionBottomNav2FragmentToBottomNav4Fragment(contentId)
+        val direction = BottomNav2FragmentDirections
+                .actionBottomNav2FragmentToBottomNav4Fragment()
+                .setContentId(contentId)
         findNavController().navigate(direction)
     }
 }
