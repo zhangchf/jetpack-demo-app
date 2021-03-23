@@ -1,6 +1,7 @@
 package com.zcf.testapp.fragment3
 
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.zcf.testapp.R
 import com.zcf.testapp.databinding.FragmentBottomNav3Binding
 import com.zcf.testapp.databinding.ViewRecyclerItemBinding
+import com.zcf.testapp.model.Post
 import com.zcf.testapp.shared.SharedViewModel
 
 class BottomNav3Fragment: Fragment(R.layout.fragment_bottom_nav_3) {
@@ -35,15 +37,31 @@ class BottomNav3Fragment: Fragment(R.layout.fragment_bottom_nav_3) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = MyRecyclerViewAdapter()
+        val adapter = MyRecyclerViewAdapter()
+        binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
+
+        sharedViewModel.posts.observe(viewLifecycleOwner) {
+//            adapter.refreshData(it)
+            adapter.posts = it
+            adapter.notifyDataSetChanged()
+        }
     }
 }
 
 internal class MyRecyclerViewHolder(val itemBinding: ViewRecyclerItemBinding) :
     RecyclerView.ViewHolder(itemBinding.root)
 
-internal class MyRecyclerViewAdapter: RecyclerView.Adapter<MyRecyclerViewHolder>(){
+internal class MyRecyclerViewAdapter(): RecyclerView.Adapter<MyRecyclerViewHolder>(){
+    var posts = listOf<Post>()
+
+//    fun refreshData(newData: List<Post>) {
+//        Log.i("zcf", "refreshData, ${newData.size}")
+//        posts.clear()
+//        posts.addAll(newData)
+//        notifyDataSetChanged()
+//    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRecyclerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ViewRecyclerItemBinding.inflate(inflater, parent, false)
@@ -51,17 +69,17 @@ internal class MyRecyclerViewAdapter: RecyclerView.Adapter<MyRecyclerViewHolder>
     }
 
     override fun onBindViewHolder(holder: MyRecyclerViewHolder, position: Int) {
-        holder.itemBinding.textView.text = "Item $position"
+        holder.itemBinding.textView.text = posts[position].body
 
-        val height = 50 + 30 * (position % 2)
-        val resources = holder.itemBinding.root.resources
-        holder.itemBinding.textView.height =
-            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height.toFloat(), resources.displayMetrics)
-                .toInt()
+//        val height = 50 + 30 * (position % 2)
+//        val resources = holder.itemBinding.root.resources
+//        holder.itemBinding.textView.height =
+//            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height.toFloat(), resources.displayMetrics)
+//                .toInt()
     }
 
     override fun getItemCount(): Int {
-        return 100
+        return posts.size
     }
 
 }
