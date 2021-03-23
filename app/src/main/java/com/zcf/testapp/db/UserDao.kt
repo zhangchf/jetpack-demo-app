@@ -1,4 +1,4 @@
-package com.zcf.testapp.repo
+package com.zcf.testapp.db
 
 import androidx.room.Dao
 import androidx.room.Delete

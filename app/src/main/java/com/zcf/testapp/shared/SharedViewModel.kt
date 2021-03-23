@@ -1,19 +1,24 @@
 package com.zcf.testapp.shared
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.*
-import com.zcf.testapp.App
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.zcf.testapp.model.Post
+import com.zcf.testapp.db.PostDao
 import com.zcf.testapp.web.TypicodeApi
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class SharedViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class SharedViewModel @Inject constructor(
+    val typicodeApi: TypicodeApi,
+    val postDao: PostDao
+) : ViewModel() {
 
     private val _posts = MutableLiveData<List<Post>>(listOf())
-
     val posts: LiveData<List<Post>> = _posts
 
     init {
@@ -21,19 +26,15 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun getUsers() {
-        val retrofit = Retrofit
-            .Builder()
-            .baseUrl(TypicodeApi.URL_HOST)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
         Log.i("zcf", "getdata begin")
+
         viewModelScope.launch {
-            val posts = retrofit.create(TypicodeApi::class.java).getPosts()
+            val posts = typicodeApi.getPosts()
             _posts.value =posts
             Log.i("zcf", "getData end")
 
-            getApplication<App>().postDb.postDao().insertAll(*posts.toTypedArray())
+            postDao.insertAll(*posts.toTypedArray())
 
         }
     }

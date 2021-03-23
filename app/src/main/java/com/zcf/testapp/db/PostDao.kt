@@ -1,4 +1,4 @@
-package com.zcf.testapp.repo
+package com.zcf.testapp.db
 
 import androidx.room.*
 import com.zcf.testapp.model.Post
