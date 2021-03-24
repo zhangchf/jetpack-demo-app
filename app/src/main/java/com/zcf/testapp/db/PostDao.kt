@@ -1,5 +1,6 @@
 package com.zcf.testapp.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.zcf.testapp.model.Post
 import kotlinx.coroutines.flow.Flow
@@ -13,6 +14,9 @@ interface PostDao {
     @Delete
     suspend fun delete(vararg posts: Post)
 
+    @Query("delete from Post")
+    suspend fun deleteAll()
+
     @Query("select * from Post")
-    fun getAll(): Flow<List<Post>>
+    fun getAll(): LiveData<List<Post>>
 }

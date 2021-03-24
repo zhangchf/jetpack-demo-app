@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zcf.testapp.model.Post
 import com.zcf.testapp.db.PostDao
+import com.zcf.testapp.repo.PostRepo
 import com.zcf.testapp.web.TypicodeApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,12 +15,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
-    val typicodeApi: TypicodeApi,
-    val postDao: PostDao
+        val postRepo: PostRepo
 ) : ViewModel() {
 
     private val _posts = MutableLiveData<List<Post>>(listOf())
-    val posts: LiveData<List<Post>> = _posts
+    val posts: LiveData<List<Post>> = postRepo.getPosts()
 
     init {
         getUsers()
@@ -29,14 +29,13 @@ class SharedViewModel @Inject constructor(
 
         Log.i("zcf", "getdata begin")
 
-        viewModelScope.launch {
-            val posts = typicodeApi.getPosts()
-            _posts.value =posts
-            Log.i("zcf", "getData end")
-
-            postDao.insertAll(*posts.toTypedArray())
-
-        }
+//        viewModelScope.launch {
+//            _posts.value = postRepo.getPosts()
+//            Log.i("zcf", "getData end")
+//
+//            postDao.insertAll(*posts.toTypedArray())
+//
+//        }
     }
 
 }
