@@ -2,6 +2,7 @@ package com.zcf.testapp.web
 
 import com.zcf.testapp.model.Post
 import com.zcf.testapp.model.User
+import retrofit2.Response
 import retrofit2.http.GET
 
 interface TypicodeApi {
