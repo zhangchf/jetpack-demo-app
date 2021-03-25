@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+import com.google.android.material.snackbar.Snackbar
 import com.zcf.testapp.R
+import com.zcf.testapp.base.ResultWrapper
 import com.zcf.testapp.databinding.FragmentBottomNav3Binding
 import com.zcf.testapp.databinding.ViewRecyclerItemBinding
 import com.zcf.testapp.model.Post
@@ -47,7 +49,13 @@ class BottomNav3Fragment: Fragment(R.layout.fragment_bottom_nav_3) {
 
         sharedViewModel.posts.observe(viewLifecycleOwner) {
 //            adapter.refreshData(it)
-            adapter.submitList(it)
+            when (it) {
+                is ResultWrapper.Success -> adapter.submitList(it.value)
+                is ResultWrapper.Error -> {
+                    Log.e("zcf", it.exception.toString())
+                    Snackbar.make(binding.recyclerView, it.exception.toString(), Snackbar.LENGTH_LONG).show()
+                }
+            }
         }
     }
 }

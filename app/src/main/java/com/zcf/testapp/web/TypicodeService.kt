@@ -9,12 +9,11 @@ class TypicodeService @Inject constructor(
     val typicodeApi: TypicodeApi
 ) {
 
-//    suspend fun getPosts(): ResultWrapper<List<Post>> {
-//        val response = typicodeApi.getPosts()
-//        return if (response.isSuccessful && response.body() != null) {
-//            ResultWrapper.Success(response.body()!!)
-//        } else {
-//            ResultWrapper.Error(response.code(), response.message())
-//        }
-//    }
+    suspend fun getPosts(): ResultWrapper<List<Post>> {
+        return try {
+            ResultWrapper.Success(typicodeApi.getPosts())
+        } catch (e: Exception) {
+            ResultWrapper.Error(e)
+        }
+    }
 }

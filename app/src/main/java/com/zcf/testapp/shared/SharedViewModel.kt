@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zcf.testapp.base.ResultWrapper
 import com.zcf.testapp.model.Post
 import com.zcf.testapp.db.PostDao
 import com.zcf.testapp.repo.PostRepo
@@ -18,8 +19,7 @@ class SharedViewModel @Inject constructor(
         val postRepo: PostRepo
 ) : ViewModel() {
 
-    private val _posts = MutableLiveData<List<Post>>(listOf())
-    val posts: LiveData<List<Post>> = postRepo.getPosts()
+    val posts: LiveData<ResultWrapper<List<Post>>> = postRepo.getPosts()
 
     init {
         getUsers()
