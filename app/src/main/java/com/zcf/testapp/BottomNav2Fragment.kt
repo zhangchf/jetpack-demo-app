@@ -6,6 +6,8 @@ import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.location.LocationManager.GPS_PROVIDER
+import android.location.LocationManager.NETWORK_PROVIDER
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -57,21 +59,34 @@ class BottomNav2Fragment: Fragment() {
         permissionManager.checkAndRequestPermission()
     }
 
+    private fun onLocationReceived(location: Location) {
+        binding.textContent.text = "Location: (${location.provider}, ${location.longitude}, ${location.latitude})"
+    }
+
 
     private val locationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            Log.i("zcf", "location: $location")
             locationManager.removeUpdates(this)
+            Log.i("zcf", "location: $location")
+            onLocationReceived(location)
         }
     }
 
     @SuppressLint("MissingPermission")
     private fun requestLocation() {
-        locationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            1000,
-            1f,
-            locationListener)
+        var locationProvider = when {
+            locationManager.isProviderEnabled(GPS_PROVIDER) -> GPS_PROVIDER
+            locationManager.isProviderEnabled(NETWORK_PROVIDER) -> NETWORK_PROVIDER
+            else -> null
+        }
+
+        locationProvider?.let {
+            locationManager.requestLocationUpdates(
+                it,
+                1000,
+                1f,
+                locationListener)
+        }
     }
 
     private fun showLocaitonPermissionRationalUI() {
