@@ -1,4 +1,4 @@
-package com.zcf.testapp
+package com.zcf.testapp.fragment4
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.zcf.testapp.R
 import com.zcf.testapp.databinding.FragmentBottomNav4Binding
 
 class BottomNav4Fragment: Fragment(R.layout.fragment_bottom_nav_4) {

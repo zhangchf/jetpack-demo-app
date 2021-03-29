@@ -1,4 +1,4 @@
-package com.zcf.testapp
+package com.zcf.testapp.fragment2
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -13,9 +13,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.zcf.testapp.R
 import com.zcf.testapp.databinding.FragmentBottomNav2Binding
 import com.zcf.testapp.permission.PermissionManager
 
@@ -55,6 +58,13 @@ class BottomNav2Fragment: Fragment() {
         binding.textContent.setOnClickListener {
             navigateToDetailsScreen(2)
         }
+        binding.openDialog.setOnClickListener {
+            showDemoDialog()
+        }
+        binding.openBottomSheet.setOnClickListener {
+            val direction = BottomNav2FragmentDirections.actionBottomNav2FragmentToMyBottomSheetDailogFragment()
+            findNavController().navigate(direction)
+        }
 
         permissionManager.checkAndRequestPermission()
     }
@@ -90,11 +100,21 @@ class BottomNav2Fragment: Fragment() {
     }
 
     private fun showLocaitonPermissionRationalUI() {
-        val snackbar = Snackbar.make(binding.root, "Rational: This app needs location.", Snackbar.LENGTH_SHORT)
-        snackbar.setAction("Grant") {
-            permissionManager.requestPermission()
-        }
-        snackbar.show()
+//        val snackbar = Snackbar.make(binding.root, "Rational: This app needs location.", Snackbar.LENGTH_SHORT)
+//        snackbar.setAction("Grant") {
+//            permissionManager.requestPermission()
+//        }
+//        snackbar.show()
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage("Rational: This app needs location.")
+            .setPositiveButton("OK") { dialog, which ->
+                permissionManager.requestPermission()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun showNoLocationPermissionError() {
@@ -102,9 +122,24 @@ class BottomNav2Fragment: Fragment() {
     }
 
     private fun navigateToDetailsScreen(contentId: Int) {
-        val direction = BottomNav2FragmentDirections
-                .actionBottomNav2FragmentToBottomNav4Fragment()
+        val direction = BottomNav2FragmentDirections.actionBottomNav2FragmentToBottomNav4Fragment()
                 .setContentId(contentId)
         findNavController().navigate(direction)
+    }
+
+    private fun showDemoDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Dialog title")
+                .setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.ic_launcher_background))
+                .setIcon(R.drawable.ic_launcher_foreground)
+                .setMessage("This is a demo dialog.")
+                .setView(R.layout.fragment_bottom_sheet)
+                .setPositiveButton("OK") { dialog, which ->
+                    permissionManager.requestPermission()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
     }
 }

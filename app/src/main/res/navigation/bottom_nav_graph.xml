@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/bottomNav1Fragment"
-        android:name="com.zcf.testapp.BottomNav1Fragment"
+        android:name="com.zcf.testapp.fragment1.BottomNav1Fragment"
         android:label="BottomNav1Fragment" >
         <action
             android:id="@+id/action_bottomNav1Fragment_to_bottomNav4Fragment"
@@ -14,11 +14,14 @@
     </fragment>
     <fragment
         android:id="@+id/bottomNav2Fragment"
-        android:name="com.zcf.testapp.BottomNav2Fragment"
+        android:name="com.zcf.testapp.fragment2.BottomNav2Fragment"
         android:label="BottomNav2Fragment" >
         <action
             android:id="@+id/action_bottomNav2Fragment_to_bottomNav4Fragment"
             app:destination="@id/bottomNav4Fragment" />
+        <action
+            android:id="@+id/action_bottomNav2Fragment_to_myBottomSheetDailogFragment"
+            app:destination="@id/myBottomSheetDailogFragment" />
     </fragment>
     <fragment
         android:id="@+id/bottomNav3Fragment"
@@ -26,11 +29,15 @@
         android:label="BottomNav3Fragment" />
     <fragment
         android:id="@+id/bottomNav4Fragment"
-        android:name="com.zcf.testapp.BottomNav4Fragment"
+        android:name="com.zcf.testapp.fragment4.BottomNav4Fragment"
         android:label="BottomNav4Fragment" >
         <argument
             android:name="content_id"
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
+    <dialog
+        android:id="@+id/myBottomSheetDailogFragment"
+        android:name="com.zcf.testapp.fragment2.MyBottomSheetDailogFragment"
+        android:label="MyBottomSheetDailogFragment" />
 </navigation>

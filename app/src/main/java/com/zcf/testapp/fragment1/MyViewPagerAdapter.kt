@@ -1,4 +1,4 @@
-package com.zcf.testapp
+package com.zcf.testapp.fragment1
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

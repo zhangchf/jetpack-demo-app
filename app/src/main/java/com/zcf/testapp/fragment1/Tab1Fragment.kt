@@ -1,4 +1,4 @@
-package com.zcf.testapp
+package com.zcf.testapp.fragment1
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,8 +30,7 @@ class Tab1Fragment: Fragment() {
     }
 
     private fun navigateToDetailScreen(contentId: Int) {
-        val direction = BottomNav1FragmentDirections
-            .actionBottomNav1FragmentToBottomNav4Fragment()
+        val direction = BottomNav1FragmentDirections.actionBottomNav1FragmentToBottomNav4Fragment()
             .setContentId(contentId)
         findNavController().navigate(direction)
     }

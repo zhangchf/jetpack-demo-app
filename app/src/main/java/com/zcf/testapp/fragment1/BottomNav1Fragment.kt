@@ -1,4 +1,4 @@
-package com.zcf.testapp
+package com.zcf.testapp.fragment1
 
 import android.os.Bundle
 import android.view.LayoutInflater
