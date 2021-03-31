@@ -1,5 +1,6 @@
 package com.zcf.testapp.repo
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
@@ -27,6 +28,9 @@ class PostRepo @Inject constructor(
         } else {
             emit(result)
         }
+
+        val newResult = postDao.getAllSync()
+        Log.i("zcflog", "newResult: $newResult")
     }
 
 }

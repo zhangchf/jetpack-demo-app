@@ -19,4 +19,7 @@ interface PostDao {
 
     @Query("select * from Post")
     fun getAll(): LiveData<List<Post>>
+
+    @Query("select * from Post")
+    suspend fun getAllSync(): List<Post>
 }
