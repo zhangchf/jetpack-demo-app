@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
+import com.zcf.testapp.fragment3.MyRecyclerViewHolder
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -24,7 +26,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @HiltAndroidTest
-class DemoNavigationActivityTest2 {
+class DemoNavigationActivityTestWithHilt {
 
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
@@ -64,6 +66,12 @@ class DemoNavigationActivityTest2 {
             )
         )
         textView.check(matches(withText("Post 2 body")))
+
+        onView(withId(R.id.recycler_view))
+            .perform(
+                RecyclerViewActions.scrollToPosition<MyRecyclerViewHolder>(100)
+            )
+        onView(withText("Post 100 body")).check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

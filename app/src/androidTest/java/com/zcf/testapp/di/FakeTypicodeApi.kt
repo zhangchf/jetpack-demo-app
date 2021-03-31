@@ -7,11 +7,9 @@ import javax.inject.Inject
 
 class FakeTypicodeApi @Inject constructor() : TypicodeApi {
     override suspend fun getPosts(): List<Post> {
-        return listOf(
-            Post(1, 100, "Post 1", "Post 1 body"),
-            Post(2, 102, "Post 2", "Post 2 body"),
-            Post(3, 103, "Post 3", "Post 3 body")
-        )
+        return listOf(0..100).flatten().map { i ->
+            Post(i, 100+i, "Post $i", "Post $i body")
+        }
     }
 
     override suspend fun getUsers(): List<User> {
