@@ -2,14 +2,13 @@ package com.zcf.testapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.zcf.testapp.databinding.ActivityDemoNavigationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BottomNavigationActivity: AppCompatActivity() {
+class DemoNavigationActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityDemoNavigationBinding
 

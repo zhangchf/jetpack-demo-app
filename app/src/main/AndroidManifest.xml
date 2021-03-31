@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestApp">
 
-        <activity android:name=".BottomNavigationActivity"
+        <activity android:name=".DemoNavigationActivity"
             android:label="Demo Navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +29,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DrawerActivity"
+            android:label="Demo Drawer Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MainActivity"
+            android:label="Demo Main Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
 
     </application>
 
