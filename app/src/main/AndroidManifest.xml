@@ -2,19 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zcf.testapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".App"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TestApp">
+        android:theme="@style/Theme.TestApp"
+        android:allowBackup="true">
 
-        <activity android:name=".DemoNavigationActivity"
+        <activity
+            android:name=".DemoNavigationActivity"
+            android:exported="true"
             android:label="Demo Navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DemoFragmentActivity"
+        <activity
+            android:name=".DemoFragmentActivity"
+            android:exported="true"
             android:label="Demo Fragment">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +34,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DrawerActivity"
+        <activity
+            android:name=".DrawerActivity"
+            android:exported="true"
             android:label="Demo Drawer Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,14 +44,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
             android:label="Demo Main Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
 
     </application>
